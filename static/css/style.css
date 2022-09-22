@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    border-style: groove;
+    width:80%;
+    margin: auto;
+    flex-direction: column;
+}
+
+.navbar{
+    
+    border: 2px solid blue;
+    
+}
+
+.row{
+    display: flex;
+    
+}
+
+.form{
+    width: 40%;
+}
+
+.card {
+    width: 60%;
+    
+}
+
+.p-20{
+    display: inline-block;
+    padding: 300px;
+}

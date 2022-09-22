@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Lista Alumnos
+{% endblock title %}
+
+
+{% block content %}
+    
+
+<table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>Servicio</th>
+            <th>Fecha</th>
+            <th>Opciones</th>
+        </tr>
+        {% for i in lista %}
+        <tr>
+            <td>{{i.nombre}}</td>
+            <td>{{i.apellido}}</td>
+            <td>{{i.dni}}</td>
+            <td>{{i.servicio.nombre}}</td>
+            <td><a href="{% url 'alumno_app:Detail' i.id %}">Detalle</a></td>
+            <td><a href="{% url 'alumno_app:Update' i.id %}">Actualizar</a></td>
+            <form action="{% url 'alumno_app:Delete' i.id %}" method="POST"> {% csrf_token %}
+                <td> <button type="submit"> Eliminar </button></td>
+            </form>
+            
+        </tr>
+        
+        {% endfor %}
+        
+    </table>
+    
+    
+    <div class="cell">
+        {% if is_paginated %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">primera &laquo;{{age_obj.number}}</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}"> &raquo;ultima {{age_obj.number}}</a>
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+    {% endblock content %}
+    

@@ -18,7 +18,7 @@ class Servicio(models.Model):
 
     def __str__(self):
         """Unicode representation of Servicio."""
-        return self.nombre
+        return f"{self.nombre} {self.id}"
 
 class Alumno(models.Model):
     """Model definition for Alumnos."""
@@ -27,6 +27,9 @@ class Alumno(models.Model):
     apellido = models.CharField('Apellido:', max_length=10)
     dni = models.CharField('DNI:', max_length=20)
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
+    # Servicio = models.ManyToManyField(Servicio)
+    fecha = models.DateField( auto_now_add=True)
+    hora = models.DateTimeField(auto_now_add=True)
 
 
     class Meta:
@@ -37,4 +40,4 @@ class Alumno(models.Model):
 
     def __str__(self):
         """Unicode representation of Alumnos."""
-        return self.nombre
+        return f"{self.nombre} {self.id}"

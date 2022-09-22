@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Registro Alumnos
+{% endblock title %}
+
+{% block content %}
+    
+
+<header>
+    <h1>Alumnos</h1>
+</header>
+<div class="row">
+    <div class="form ">
+        <form action="{% url 'alumno_app:Created' %}" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+            
+            <div class="card ">
+                <div class="table">
+                    <table border="1">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Servicio</th>
+                            <th>fecha</th>
+                        </tr>
+                        {% for i in alumnos %}
+                        <tr>
+                            <td>{{i.nombre}}</td>
+                            <td>{{i.apellido}}</td>
+                            <td>{{i.dni}}</td>
+                            <td>{{i.servicio}}</td>
+                            <td>{{i.hora}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                
+                
+                
+                {% if page_obj %}
+                p
+                hola
+                {% endif %}
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    {% endblock content %}
